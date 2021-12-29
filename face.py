@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import notification
+
+# errors
+def errorCheck(keyword, value):
+    if type(keyword) != str:
+        notification.close("Error: "+ str(keyword) + " used as a keyword in a Face's Value Container. Keyword must be a string.")
+    if type(value) != int:
+        notification.close("Error: "+ str(keyword) +"'s value, " + str(value) + ", is not an integer. All values must be integers.")
+
+
 # class Face is a container for the probability (p) and values of a particular 
 # face of a die.
 # It contains a container (.values) for the myriad values that could be encoded
@@ -12,12 +22,22 @@ class Face:
         self.p = p # the probability of the face being hit
         self.values = {} # contains attributes of the face and their values
         for key in kwargs.keys():
+            errorCheck(key, kwargs[key])
             self.values[key] = kwargs[key]
+    # returns the value of a particular attribute, returns 0 if attribute not present
     def getValue(self, attribute):
         if attribute in self.values.keys():
             return self.values[attribute]
         else:
             return 0
+    # returns all attribute values in an array
+    def getValues(self):
+        values = []
+        for key in self.values.keys():
+            values.append([key, self.values[key]])
+        return values
+        
+        
         
 """
 f = Face(0.5, number=1) # coin
