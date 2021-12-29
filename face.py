@@ -19,7 +19,6 @@ def errorCheckKWs(keyword, value):
 # It contains a container (.values) for the myriad values that could be encoded
 # on the side of the die. E.g. colors, symbols, number pips etc.
 # "number" is the default keyword for a numeric face value
-# "color" is the default keyword for a face's color value
 # All keywords must be strings and their respective values should be integers.
 # Error handling will inform where incorrect value types are used. 
 class Face:
