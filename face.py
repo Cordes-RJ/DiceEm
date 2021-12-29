@@ -37,11 +37,13 @@ class Face:
         else:
             return 0
     # returns all attribute values in an array
-    def getValues(self):
+    def getValuesInArray(self):
         values = []
         for key in self.values.keys():
             values.append([key, self.values[key]])
         return values
+    def getValuesAsdict(self):
+        return self.values
         
         
         
