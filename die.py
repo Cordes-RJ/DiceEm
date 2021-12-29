@@ -38,3 +38,4 @@ class Die:
             total += face.p
             if roll < total:
                 return face
+        notification.close("Devmsg: Something has gone wrong with the roll.")
