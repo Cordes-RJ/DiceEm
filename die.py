@@ -8,6 +8,8 @@ errorAllowance = 0.000001 # how much allowance for error in dice probability
 
 # errors
 def errorCheck(faces):
+    if len(faces)<2:
+        notification.close("Not enough faces to generate Die. Die require a minimum of 2 faces.")
     total = 0
     for face in faces:
         total += face.p
