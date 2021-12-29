@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import notification
-
+ 
 # errors
-def errorCheck(keyword, value):
+def errorCheckP(p):
+    if type(p) != float:
+        notification.close("Error: "+ str(p) + ", is not a float. All probabilities must be floats")
+
+def errorCheckKWs(keyword, value):
     if type(keyword) != str:
         notification.close("Error: "+ str(keyword) + " used as a keyword in a Face's Value Container. Keyword must be a string.")
     if type(value) != int:
@@ -16,13 +20,15 @@ def errorCheck(keyword, value):
 # on the side of the die. E.g. colors, symbols, number pips etc.
 # "number" is the default keyword for a numeric face value
 # "color" is the default keyword for a face's color value
-# All keywords must be strings and their respective values should be integers. 
+# All keywords must be strings and their respective values should be integers.
+# Error handling will inform where incorrect value types are used. 
 class Face:
     def __init__(self, p, **kwargs):
+        errorCheckP(p)
         self.p = p # the probability of the face being hit
         self.values = {} # contains attributes of the face and their values
         for key in kwargs.keys():
-            errorCheck(key, kwargs[key])
+            errorCheckKWs(key, kwargs[key])
             self.values[key] = kwargs[key]
     # returns the value of a particular attribute, returns 0 if attribute not present
     def getValue(self, attribute):
